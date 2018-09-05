@@ -1,4 +1,4 @@
-const BinarySearchTree = require('./bstClass');
+const BinarySearchTree = require("./bstClass");
 // Draw a BST
 // Given the following data 3,1,4,6,9,2,5,7. If you were to insert this into an empty Binary Search Tree, how would the tree look like? (Draw the tree, no coding needed here)
 /*
@@ -75,23 +75,18 @@ function isBST(tree) {
   let currentNode = tree;
   let results = true;
   if (currentNode.left !== null && currentNode.left.key > currentNode.key) {
-  
     results = false;
   }
   if (currentNode.right !== null && currentNode.right.key < currentNode.key) {
-   
     results = false;
   }
   if (currentNode.left === null && currentNode.right === null) {
-
     results = true;
   }
   if (currentNode.left !== null && currentNode.left.key < currentNode.key) {
-
     isBST(currentNode.left);
   }
   if (currentNode.right !== null && currentNode.right.key > currentNode.key) {
-
     isBST(currentNode.right);
   }
   return results;
@@ -116,24 +111,55 @@ function isBST(tree) {
                 8  
 */
 
-let count=1;
-function thirdLargest(tree){
-  if(tree===null){
+let count = 1;
+function thirdLargest(tree) {
+  if (tree === null) {
     return;
   }
   thirdLargest(tree.right);
-  
-  if(count === 3){
+
+  if (count === 3) {
     count++;
     console.log(tree.key);
     return;
   }
   count++;
   thirdLargest(tree.left);
-
 }
 thirdLargest(BST);
 //need to move right
 
 // Balanced BST
 // Write an algorithm that checks if a BST is balanced (i.e. a tree where no two leaves differ in distance from the root by more than one).
+function balancedBST(tree) {
+  let currentNode = tree;
+  let leftSide = 0;
+  let rightSide = 0;
+
+  if (currentNode.left === null && currentNode.right === null) {
+    return;
+  }
+  if (currentNode.left !== null) {
+    leftSide = 1 + balancedBST(currentNode.left);
+  }
+  if (currentNode.right !== null) {
+    rightSide = 1 + balancedBST(currentNode.right);
+  }
+  return Math.abs(leftSide - rightSide) > 1 ? false : true;
+}
+
+console.log(balancedBST(BST));
+
+function isBalanced(bst) {
+  if (!bst) {
+    return 0;
+  }
+
+  let rightHeight = isBalanced(bst.right);
+  let leftHeight = isBalanced(bst.left);
+
+  console.log(Math.abs(leftHeight - rightHeight));
+  return Math.abs(leftHeight - rightHeight) <= 0;
+}
+
+console.log(isBalanced(BST));
