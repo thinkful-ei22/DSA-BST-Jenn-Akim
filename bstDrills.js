@@ -1,3 +1,4 @@
+const BinarySearchTree =require('./bstClass');
 // Draw a BST
 // Given the following data 3,1,4,6,9,2,5,7. If you were to insert this into an empty Binary Search Tree, how would the tree look like? (Draw the tree, no coding needed here)
 /*
@@ -28,8 +29,39 @@
 // Walk through the Binary Search Tree code in the curriculum and understand it well. Then write a Binary Search Tree class and with its core functions (insert, remove, find) from scratch.
 
 // Create a Binary Search Tree called BST and insert 3,1,4,6,9,2,5,7 to your tree. Compare your result with the result from the first exercise
+
+const BST = new BinarySearchTree();
+
+BST.insert(3);
+BST.insert(1);
+BST.insert(4);
+// BST.insert(6);
+// BST.insert(9);
+// BST.insert(2);
+// BST.insert(5);
+// BST.insert(7);
+// BST.insert(0);
+
+// console.log(BST.find(BST.key));
+
 // Height of a BST
 // Write an algorithm to find the height of a binary search tree. What is the run time of your algorithm?
+
+const findHeight = function(tree){
+  let currentNode = tree;
+
+  if(currentNode.left === null && currentNode.right === null){
+    return 1;
+  }
+  if(currentNode.left !== null){
+    return 1+ findHeight(currentNode.left);
+  }
+  if(currentNode.right !== null){
+    return 1+ findHeight(currentNode.right);
+  }
+};
+
+console.log(findHeight(BST));
 
 // is it BST?
 // Write an algorithm to check whether an arbitrary binary tree is a binary search tree, assuming the tree does not contain duplicates

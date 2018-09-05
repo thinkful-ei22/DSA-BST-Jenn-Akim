@@ -31,7 +31,7 @@ class BinarySearchTree {
 
   find(key) {
     if (this.key === key) {
-      return this.value;
+      return this;
     }
     if (key < this.key && this.left) {
       return this.left.find(key);
@@ -39,13 +39,13 @@ class BinarySearchTree {
     if (key > this.key && this.right) {
       return this.right.find(key);
     }
-    throw new Error("Nothing found. Everything went wrong.");
+    throw new Error('Nothing found. Everything went wrong.');
   }
 
   remove(key) {
     if (key === this.key) {
       if (this.left && this.right) {
-        successor = this.right._findMinimum;
+        const successor = this.right._findMinimum();
         this.key = successor.key;
         this.value = successor.value;
         successor.remove(successor.key);
@@ -59,9 +59,9 @@ class BinarySearchTree {
 
   _replaceWith(node) {
     if (this.parent) {
-      if (this == this.parent.left) {
+      if (this === this.parent.left) {
         this.parent.left = node;
-      } else if (this == this.parent.right) {
+      } else if (this === this.parent.right) {
         this.parent.right = node;
       }
 
@@ -90,3 +90,5 @@ class BinarySearchTree {
     return this.left._findMinimum();
   }
 }
+
+module.exports = BinarySearchTree;
