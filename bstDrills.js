@@ -1,4 +1,4 @@
-const BinarySearchTree = require("./bstClass");
+const BinarySearchTree = require('./bstClass');
 // Draw a BST
 // Given the following data 3,1,4,6,9,2,5,7. If you were to insert this into an empty Binary Search Tree, how would the tree look like? (Draw the tree, no coding needed here)
 /*
@@ -8,9 +8,10 @@ const BinarySearchTree = require("./bstClass");
          \    \
           2    6
                /\
-              5  9
-                /
-               7 
+              5  9              
+                /              
+               7
+                 
 */
 
 // Remove the root
@@ -40,7 +41,9 @@ BST.insert(9);
 BST.insert(2);
 BST.insert(5);
 BST.insert(7);
-BST.insert(0);
+// BST.insert(0);
+BST.insert(10);
+BST.insert(8);
 
 // console.log(BST.find(BST.key));
 
@@ -64,7 +67,7 @@ const findHeight = function(tree) {
   return (height = leftSide >= rightSide ? leftSide : rightSide);
 };
 
-console.log(findHeight(BST));
+// console.log(findHeight(BST));
 
 // is it BST?
 // Write an algorithm to check whether an arbitrary binary tree is a binary search tree, assuming the tree does not contain duplicates
@@ -72,32 +75,65 @@ function isBST(tree) {
   let currentNode = tree;
   let results = true;
   if (currentNode.left !== null && currentNode.left.key > currentNode.key) {
-    console.log("first base case");
+  
     results = false;
   }
   if (currentNode.right !== null && currentNode.right.key < currentNode.key) {
-    console.log("second base case");
+   
     results = false;
   }
   if (currentNode.left === null && currentNode.right === null) {
-    console.log("third base case");
+
     results = true;
   }
   if (currentNode.left !== null && currentNode.left.key < currentNode.key) {
-    console.log("continuing left");
+
     isBST(currentNode.left);
   }
   if (currentNode.right !== null && currentNode.right.key > currentNode.key) {
-    console.log("continuing right");
+
     isBST(currentNode.right);
   }
   return results;
 }
 
-console.log(isBST(BST));
+// console.log(isBST(BST));
 
 // Third largest node
 // Write an algorithm to find the third largest node in a binary search tree
+
+/*
+          3 
+         / \
+        1   4 
+       /  \   \
+      0    2   6 
+               /\
+              5  9 
+                / \
+               7   10
+               \
+                8  
+*/
+
+let count=1;
+function thirdLargest(tree){
+  if(tree===null){
+    return;
+  }
+  thirdLargest(tree.right);
+  
+  if(count === 3){
+    count++;
+    console.log(tree.key);
+    return;
+  }
+  count++;
+  thirdLargest(tree.left);
+
+}
+thirdLargest(BST);
+//need to move right
 
 // Balanced BST
 // Write an algorithm that checks if a BST is balanced (i.e. a tree where no two leaves differ in distance from the root by more than one).
