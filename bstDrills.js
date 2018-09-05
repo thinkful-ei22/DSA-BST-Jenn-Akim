@@ -1,8 +1,28 @@
 // Draw a BST
 // Given the following data 3,1,4,6,9,2,5,7. If you were to insert this into an empty Binary Search Tree, how would the tree look like? (Draw the tree, no coding needed here)
+/*
+          3
+         / \
+        1   4
+         \    \
+          2    6
+               /\
+              5  9
+                /
+               7 
+*/
 
 // Remove the root
 // Show how the tree would look like if you deleted the root. (Draw the tree, no coding needed here)
+/*
+           4
+         /   \
+        1     6
+         \   /  \
+          2 5    9
+                /
+               7 
+*/
 
 // Create a BST class
 // Walk through the Binary Search Tree code in the curriculum and understand it well. Then write a Binary Search Tree class and with its core functions (insert, remove, find) from scratch.
